@@ -120,31 +120,18 @@ function isIsoscelesTriangle(a, b, c) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
-  // let result = '';
-
-  // if (num >= 10) {
-  //   result += 'X';
-  //   num -= 10;
-  // }
-  // if (num >= 9) {
-  //   result += 'IX';
-  //   num -= 9;
-  // }
-  // if (num >= 5 && num <= 8) {
-  //   result += 'V';
-  //   num -= 5;
-  // }
-  // if (num >= 4) {
-  //   result += 'IV';
-  //   num -= 4;
-  // }
-  // if (num >= 1 && num <= 3) {
-  //   result += 'I';
-  //   num -= 1;
-  // }
-  // return result;
+function convertToRomanNumerals(num) {
+  let numeral = num;
+  let result = '';
+  const romNum = ['X', 'IX', 'VIII', 'VII', 'VI', 'V', 'IV', 'III', 'II', 'I'];
+  const number = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+  for (let i = 0; i < romNum.length; i += 1) {
+    while (numeral >= number[i]) {
+      result += romNum[i];
+      numeral -= number[i];
+    }
+  }
+  return result;
 }
 
 /**
@@ -162,8 +149,59 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let result = '';
+  for (let i = 0; i < numberStr.length; i += 1) {
+    switch (true) {
+      case numberStr[i] === '0':
+        result += 'zero ';
+        break;
+      case numberStr[i] === '1':
+        result += 'one ';
+        break;
+      case numberStr[i] === '2':
+        result += 'two ';
+        break;
+      case numberStr[i] === '3':
+        result += 'three ';
+        break;
+      case numberStr[i] === '4':
+        result += 'four ';
+        break;
+      case numberStr[i] === '5':
+        result += 'five ';
+        break;
+      case numberStr[i] === '6':
+        result += 'six ';
+        break;
+      case numberStr[i] === '7':
+        result += 'seven ';
+        break;
+      case numberStr[i] === '8':
+        result += 'eight ';
+        break;
+      case numberStr[i] === '9':
+        result += 'nine ';
+        break;
+      case numberStr[i] === '-':
+        result += 'minus ';
+        break;
+      case numberStr[i] === ',':
+        result += 'point ';
+        break;
+      case numberStr[i] === '.':
+        result += 'point ';
+        break;
+      default:
+        result += '';
+    }
+  }
+  /* jp */
+  let resultFin = '';
+  for (let j = 0; j < result.length - 1; j += 1) {
+    resultFin += result[j];
+  }
+  return resultFin;
 }
 
 /**
